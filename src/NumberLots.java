@@ -59,8 +59,8 @@ class NumberLotsPanel extends JPanel implements ActionListener {
 						 "(한번의 버튼 클릭이 있어야 단축키 사용이 가능합니다)\n\n" +
 						 
 						 "<프로그램 관련 정보>\n" +
-						 "◆개발자: 성열암\n" +
-						 "◆문의(카카오톡): sya3369";
+						 "◆ 개발자: 성열암\n" +
+						 "◆ 문의(카카오톡): sya3369";
 	
 	//--------------------------------------------------//
 	
@@ -90,8 +90,7 @@ class NumberLotsPanel extends JPanel implements ActionListener {
 
 
 		// 버튼 관련 정의 부분
-		bt_chooseNumRange = new JButton("범위설정");
-		bt_chooseNumRange.setForeground(Color.WHITE);
+		bt_chooseNumRange = new JButton("범위 설정");
 		bt_chooseNumRange.setBackground(Color.BLACK);
 		bt_chooseNumRange.setFont(new Font("바탕체", Font.BOLD, 18));
 		bt_chooseNumRange.setFocusPainted(false); // 버튼 텍스트 포커스 표시 설정
@@ -114,7 +113,7 @@ class NumberLotsPanel extends JPanel implements ActionListener {
 			}
 		});
 
-		mni_developmentInquiry = new JMenuItem("개발문의");
+		mni_developmentInquiry = new JMenuItem("개발 문의");
 		mni_developmentInfo = new JMenuItem("프로그램 정보");
 
 		
@@ -194,17 +193,12 @@ class NumberLotsPanel extends JPanel implements ActionListener {
 		String StrNumRange;
 		while (true) {
 			UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("함초롬돋움", Font.PLAIN, 13)));
-			StrNumRange = (String) JOptionPane.showInputDialog(null, "마지막 번호를 정해주세요");
-			if (!(StrNumRange == null)) {
-				if (StrNumRange.equals(""))
-					continue;
-				if ((StrNumRange.matches(".*[ㄱ-ㅎㅏ-ㅣ가-?|a-z|A-Z]+.*")))
-					continue;
-				if (Integer.parseInt(StrNumRange) > 1)
-					break;
-			} else
-				return;
-		}
+			StrNumRange = (String) JOptionPane.showInputDialog(null, "마지막 번호를 지정해 주세요(n≥1)");
+      if (StrNumRange.equals(""))
+        continue;
+      if (Integer.parseInt(StrNumRange) > 1)
+        break;
+    }
 
 		numRange = Integer.parseInt(StrNumRange);
 		lb_numRange.setText(" 정해진 범위: 1~" + numRange);
